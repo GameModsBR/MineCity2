@@ -1,14 +1,14 @@
 plugins {
-	id 'fabric-loom' version '1.4-SNAPSHOT'
-	id 'maven-publish'
-  id "org.jetbrains.kotlin.jvm" version "1.9.21"
+	id("fabric-loom") version "1.4-SNAPSHOT"
+	id("maven-publish")
+	id("org.jetbrains.kotlin.jvm") version "1.9.21"
 }
 
-version = project.mod_version
-group = project.maven_group
+version = project.findProperty("mod_version") as String
+group = project.findProperty("maven_group") as String
 
 base {
-	archivesName = project.archives_base_name
+	archivesName.set(project.findProperty("archives_base_name") as String)
 }
 
 repositories {
@@ -20,47 +20,46 @@ repositories {
 }
 
 loom {
-    splitEnvironmentSourceSets()
+	splitEnvironmentSourceSets()
 
 	mods {
-		"minecity" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+		mods.create("minecity") {
+			sourceSet(sourceSets.main.get())
+			sourceSet(sourceSets.getByName("client"))
 		}
 	}
-
 }
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	minecraft("com.mojang:minecraft:${project.findProperty("minecraft_version")}")
+	mappings("net.fabricmc:yarn:${project.findProperty("yarn_mappings")}:v2")
+	modImplementation("net.fabricmc:fabric-loader:${project.findProperty("loader_version")}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
+	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.findProperty("fabric_version")}")
+	modImplementation("net.fabricmc:fabric-language-kotlin:${project.findProperty("fabric_kotlin_version")}")
+	// Uncomment the following line to enable the deprecated Fabric API modules.
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+	// modImplementation("net.fabricmc.fabric-api:fabric-api-deprecated:${project.findProperty("fabric_version")}")
 }
 
-processResources {
-	inputs.property "version", project.version
+tasks.processResources {
+	inputs.property("version", project.version)
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand("version" to project.version)
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+tasks.withType<JavaCompile> {
+	options.release.set(17)
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 	kotlinOptions {
-		jvmTarget = 17
+		jvmTarget = "17"
 	}
 }
 
@@ -74,7 +73,7 @@ java {
 	targetCompatibility = JavaVersion.VERSION_17
 }
 
-jar {
+tasks.jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
@@ -83,8 +82,8 @@ jar {
 // configure the maven publication
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
-			from components.java
+		create<MavenPublication>("mavenJava") {
+			from(components["java"])
 		}
 	}
 
