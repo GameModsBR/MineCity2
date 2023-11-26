@@ -1,4 +1,4 @@
-package br.com.gamemods.minecity
+package br.com.gamemods.minecity.fabric.common
 
 import net.fabricmc.api.ModInitializer
 import org.slf4j.LoggerFactory

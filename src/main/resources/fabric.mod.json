@@ -3,27 +3,27 @@
 	"id": "minecity",
 	"version": "${version}",
 	"name": "MineCity",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "",
 	"authors": [
-		"Me!"
+		"Polyana Fontes <polyana@polyclub.games>"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://polyclub.games/",
+		"sources": "https://github.com/GameModsBR/MineCity2"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/minecity/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			{
-				"value": "br.com.gamemods.minecity.MineCity",
+				"value": "br.com.gamemods.minecity.fabric.common.MineCity",
 				"adapter": "kotlin"
 			}
 		],
 		"client": [
 			{
-				"value": "br.com.gamemods.minecity.MineCityClient",
+				"value": "br.com.gamemods.minecity.fabric.client.MineCityClient",
 				"adapter": "kotlin"
 			}
 		]

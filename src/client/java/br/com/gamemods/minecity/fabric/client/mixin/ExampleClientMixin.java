@@ -1,4 +1,4 @@
-package br.com.gamemods.minecity.mixin.client;
+package br.com.gamemods.minecity.fabric.client.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;

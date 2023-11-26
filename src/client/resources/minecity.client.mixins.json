@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "br.com.gamemods.minecity.mixin.client",
+	"package": "br.com.gamemods.minecity.fabric.client.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"client": [
-		"ExampleClientMixin"
+      "ExampleClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

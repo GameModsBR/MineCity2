@@ -1,4 +1,4 @@
-package br.com.gamemods.minecity
+package br.com.gamemods.minecity.fabric.client
 
 import net.fabricmc.api.ClientModInitializer
 
