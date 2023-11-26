@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "minecity",
 	"version": "${version}",
-	"name": "Example mod",
+	"name": "MineCity",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -12,28 +12,35 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/minecity/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			{
+				"value": "br.com.gamemods.minecity.MineCity",
+				"adapter": "kotlin"
+			}
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			{
+				"value": "br.com.gamemods.minecity.MineCityClient",
+				"adapter": "kotlin"
+			}
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"minecity.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "minecity.client.mixins.json",
 			"environment": "client"
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.14.22",
-		"minecraft": "~1.20.2",
+		"fabricloader": ">=0.14.24",
+		"minecraft": "~1.20.1",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"fabric-language-kotlin": ">=1.9.21"
 	},
 	"suggests": {
 		"another-mod": "*"
