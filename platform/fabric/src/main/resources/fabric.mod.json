@@ -17,7 +17,7 @@
 	"entrypoints": {
 		"main": [
 			{
-				"value": "br.com.gamemods.minecity.fabric.common.MineCityFabric",
+				"value": "br.com.gamemods.minecity.fabric.MineCityFabric",
 				"adapter": "kotlin"
 			}
 		],

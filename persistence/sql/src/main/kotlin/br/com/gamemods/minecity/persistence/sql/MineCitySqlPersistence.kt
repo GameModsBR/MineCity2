@@ -59,6 +59,6 @@ class MineCitySqlPersistence(
                 }
             }
         }
-        if (result.success)
+        TODO()
     }
 }

@@ -1,6 +1,5 @@
 package br.com.gamemods.minecity.fabric
 
-import br.com.gamemods.minecity.api.MineCity
 import br.com.gamemods.minecity.api.MineCityPlatform
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.annotation.side.ServerSideOnly
@@ -25,8 +24,6 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.chunk.WorldChunk
@@ -61,14 +58,15 @@ object MineCityFabric : ModInitializer, MineCityPlatform {
 			worlds = FabricWorldService(this),
 			players = FabricNamedPlayerService(this),
 		)
-		MineCity.instance = core
+		//FIXME
+		/*MineCity.instance = core
 		core.onInitialize()
 		ServerLifecycleEvents.SERVER_STARTING.register(this::handleServerStarting)
 		ServerLifecycleEvents.SERVER_STARTED.register(this::handleServerStarted)
 		ServerLifecycleEvents.SERVER_STOPPING.register(this::handleServerStopping)
 		ServerLifecycleEvents.SERVER_STOPPED.register(this::handleServerStopped)
 		ServerChunkEvents.CHUNK_LOAD.register(this::handleChunkLoad)
-		ServerChunkEvents.CHUNK_UNLOAD.register(this::handleChunkUnload)
+		ServerChunkEvents.CHUNK_UNLOAD.register(this::handleChunkUnload)*/
 	}
 
 	@ServerSideOnly

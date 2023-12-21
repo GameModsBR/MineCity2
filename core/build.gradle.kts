@@ -8,5 +8,5 @@ val inlineLoggerVersion: String by rootProject
 
 dependencies {
     api(project(":api"))
-    compileOnly("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger:$inlineLoggerVersion")
+    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger:$inlineLoggerVersion")
 }
