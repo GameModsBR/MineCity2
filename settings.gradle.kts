@@ -9,4 +9,8 @@ pluginManagement {
 	}
 }
 
-include(":api", ":core", ":platform:fabric")
+include(
+	":api", ":core",
+	":persistence:base", ":persistence:sql",
+	":platform:fabric"
+)

@@ -31,6 +31,8 @@ loom {
     }
 }
 
+val persistenceProject = project(":persistence")
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft("com.mojang:minecraft:$minecraftVersion")
@@ -46,6 +48,9 @@ dependencies {
 
     // modImplementation("net.fabricmc.fabric-api:fabric-api-deprecated:${project.findProperty("fabric_version")}")
     implementation(include(project(":core"))!!)
+    persistenceProject.subprojects.forEach { persistenceImpl ->
+        implementation(include(project(persistenceImpl.path))!!)
+    }
 
     compileOnly("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger:$inlineLoggerVersion")
 }

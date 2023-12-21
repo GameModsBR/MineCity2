@@ -17,9 +17,10 @@ import kotlin.coroutines.CoroutineContext
  */
 @InternalMineCityApi
 class MineCityFabricServer(val mcServer: FabricMinecraftServerWrapper): MineCityServer {
-    override val coroutineContext: CoroutineContext = Dispatchers.Sync + CoroutineName("${mcServer.serverIp} (Sync)")
+    override val coroutineContext: CoroutineContext = SupervisorJob() + Dispatchers.Sync + CoroutineName("MineCityFabricServer ${mcServer.serverIp} (Sync)")
     private val log = InlineLogger()
     override val platform: MineCityFabric get() = MineCityFabric
+    override val serverIp: String get() = mcServer.serverIp
 
     @ServerSideOnly
     fun onServerStarting() {
