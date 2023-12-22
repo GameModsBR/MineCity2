@@ -42,7 +42,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
-    //modImplementation(include("net.kyori:adventure-platform-fabric:5.9.0")!!)
+    modImplementation(include("net.kyori:adventure-platform-fabric:5.9.0")!!)
     // Uncomment the following line to enable the deprecated Fabric API modules.
     // These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 

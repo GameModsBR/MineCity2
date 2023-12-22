@@ -2,6 +2,7 @@ package br.com.gamemods.minecity.api
 
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.service.namedplayer.NamedPlayerService
+import br.com.gamemods.minecity.api.service.permission.PermissionService
 
 private lateinit var currentInstance: MineCity
 
@@ -18,6 +19,11 @@ public interface MineCity {
      * Allows to get the player name and UUIDs with easy
      */
     public val players: NamedPlayerService
+
+    /**
+     * Allows to get the claim permissions with easy
+     */
+    public val permission: PermissionService
 
     /**
      * This companion object allows MineCity interface to be used directly in kotlin delegating all API calls to
