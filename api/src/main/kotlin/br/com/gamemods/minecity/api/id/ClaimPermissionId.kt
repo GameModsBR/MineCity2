@@ -31,7 +31,7 @@ public value class ClaimPermissionId(private val id: String) {
         /**
          * The regex pattern that valid ClaimPermissionId instances must match.
          */
-        private val VALID_REGEX = Regex("^([a-z][a-z0-9]*)(_[a-z][a-z0-9]*)*:/([a-z][a-z0-9]*)(_[a-z][a-z0-9]*)*$")
+        private val VALID_REGEX = Regex("^([a-z][a-z0-9]*)(_[a-z][a-z0-9]*)*:([a-z][a-z0-9]*)(_[a-z][a-z0-9]*)*$")
 
         /**
          * ClaimPermissionId instance for door-related permissions.

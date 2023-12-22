@@ -5,6 +5,7 @@ import br.com.gamemods.minecity.api.MineCityPlatform
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.annotation.side.ServerSideOnly
 import br.com.gamemods.minecity.api.service.namedplayer.NamedPlayerService
+import br.com.gamemods.minecity.api.service.permission.PermissionService
 import br.com.gamemods.minecity.core.service.world.WorldService
 import com.github.michaelbull.logging.InlineLogger
 
@@ -21,6 +22,7 @@ class MineCityCore(
     override val platform: MineCityPlatform,
     val worlds: WorldService,
     override val players: NamedPlayerService,
+    override val permission: PermissionService,
 ): MineCity {
 
     /**

@@ -5,9 +5,11 @@ import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.annotation.side.ServerSideOnly
 import br.com.gamemods.minecity.api.client.MineCityClient
 import br.com.gamemods.minecity.api.math.pos.*
+import br.com.gamemods.minecity.api.service.MineCityInternal
 import br.com.gamemods.minecity.core.MineCityCore
 import br.com.gamemods.minecity.core.dispatchers.Async
 import br.com.gamemods.minecity.core.dispatchers.Sync
+import br.com.gamemods.minecity.core.service.permission.CorePermissionService
 import br.com.gamemods.minecity.fabric.math.pos.FabricBlockLocation
 import br.com.gamemods.minecity.fabric.math.pos.FabricChunkLocation
 import br.com.gamemods.minecity.fabric.math.pos.FabricEntityLocation
@@ -25,6 +27,8 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.chunk.WorldChunk
@@ -58,16 +62,16 @@ object MineCityFabric : ModInitializer, MineCityPlatform {
 			platform = this,
 			worlds = FabricWorldService(this),
 			players = FabricNamedPlayerService(this),
+			permission = CorePermissionService(),
 		)
-		//FIXME
-		/*MineCity.instance = core
+		MineCityInternal.implementation = core
 		core.onInitialize()
 		ServerLifecycleEvents.SERVER_STARTING.register(this::handleServerStarting)
 		ServerLifecycleEvents.SERVER_STARTED.register(this::handleServerStarted)
 		ServerLifecycleEvents.SERVER_STOPPING.register(this::handleServerStopping)
 		ServerLifecycleEvents.SERVER_STOPPED.register(this::handleServerStopped)
 		ServerChunkEvents.CHUNK_LOAD.register(this::handleChunkLoad)
-		ServerChunkEvents.CHUNK_UNLOAD.register(this::handleChunkUnload)*/
+		ServerChunkEvents.CHUNK_UNLOAD.register(this::handleChunkUnload)
 
 		registerPermissions()
 	}

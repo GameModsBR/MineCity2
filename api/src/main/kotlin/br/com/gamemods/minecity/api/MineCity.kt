@@ -1,10 +1,10 @@
 package br.com.gamemods.minecity.api
 
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
+import br.com.gamemods.minecity.api.service.MineCityInternal
 import br.com.gamemods.minecity.api.service.namedplayer.NamedPlayerService
 import br.com.gamemods.minecity.api.service.permission.PermissionService
 
-private lateinit var currentInstance: MineCity
 
 /**
  * Interface that allows other mods to interact with MineCity.
@@ -27,16 +27,8 @@ public interface MineCity {
 
     /**
      * This companion object allows MineCity interface to be used directly in kotlin delegating all API calls to
-     * the instance that is set at [instance].
-     *
-     * @property instance Access to the MineCity API implementation, must be modified only by MineCity itself, can be accessed freely.
+     * the instance that is set at [MineCityInternal.implementation].
      */
-    public companion object: MineCity by currentInstance {
-        public var instance: MineCity
-            get() = currentInstance
-            @InternalMineCityApi
-            set(value) {
-                currentInstance = value
-            }
-    }
+    @OptIn(InternalMineCityApi::class)
+    public companion object: MineCity by MineCityInternal.implementation
 }
