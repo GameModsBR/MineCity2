@@ -16,5 +16,6 @@ class CorePermissionService: PermissionService {
             if(old == null) permission
             else error("Permission ${permission.id} already registered")
         }
+        ClaimPermission.onRegister(permission)
     }
 }

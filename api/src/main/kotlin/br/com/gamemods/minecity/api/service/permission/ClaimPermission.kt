@@ -1,5 +1,6 @@
 package br.com.gamemods.minecity.api.service.permission
 
+import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.id.ClaimPermissionId
 import net.kyori.adventure.text.Component
 
@@ -14,4 +15,13 @@ public abstract class ClaimPermission(
     public val id: ClaimPermissionId,
     public val name: Component,
     public val description: Component,
-)
+) {
+    protected abstract fun onRegister()
+
+    public companion object {
+        @InternalMineCityApi
+        public fun onRegister(claimPermission: ClaimPermission) {
+            claimPermission.onRegister()
+        }
+    }
+}
