@@ -4,6 +4,7 @@ import br.com.gamemods.minecity.api.MineCity
 import br.com.gamemods.minecity.api.MineCityPlatform
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.annotation.side.ServerSideOnly
+import br.com.gamemods.minecity.api.service.claim.ClaimService
 import br.com.gamemods.minecity.api.service.namedplayer.NamedPlayerService
 import br.com.gamemods.minecity.api.service.permission.PermissionService
 import br.com.gamemods.minecity.core.service.world.WorldService
@@ -23,6 +24,7 @@ class MineCityCore(
     val worlds: WorldService,
     override val players: NamedPlayerService,
     override val permission: PermissionService,
+    override val claims: ClaimService,
 ): MineCity {
 
     /**
