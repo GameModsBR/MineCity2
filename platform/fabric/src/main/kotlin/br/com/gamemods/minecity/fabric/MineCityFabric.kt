@@ -17,6 +17,7 @@ import br.com.gamemods.minecity.fabric.math.pos.FabricEntityLocation
 import br.com.gamemods.minecity.fabric.server.MineCityFabricServer
 import br.com.gamemods.minecity.fabric.service.FabricNamedPlayerService
 import br.com.gamemods.minecity.fabric.service.FabricWorldService
+import br.com.gamemods.minecity.fabric.service.permission.FabricBuildClaimPermission
 import br.com.gamemods.minecity.fabric.service.permission.FabricDoorClaimPermission
 import br.com.gamemods.minecity.fabric.wrapper.FabricBlockPosWrapper
 import br.com.gamemods.minecity.fabric.wrapper.FabricChunkPosWrapper
@@ -80,6 +81,7 @@ object MineCityFabric : ModInitializer, MineCityPlatform {
 
 	private fun registerPermissions() {
 		core.permission += FabricDoorClaimPermission()
+		core.permission += FabricBuildClaimPermission()
 	}
 
 	@ServerSideOnly

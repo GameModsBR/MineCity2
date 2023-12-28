@@ -1,7 +1,7 @@
 package br.com.gamemods.minecity.api.claim
 
+import br.com.gamemods.minecity.api.id.ClaimFlagId
 import br.com.gamemods.minecity.api.id.ClaimPermissionId
-import br.com.gamemods.minecity.api.id.ClamFlagId
 import br.com.gamemods.minecity.api.serializer.UniqueId
 import kotlinx.serialization.Serializable
 
@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public data class ClaimSettings(
-    val defaultFlags: Map<ClamFlagId, ClaimFlagValue> = emptyMap(),
+    val defaultFlags: Map<ClaimFlagId, ClaimFlagValue> = emptyMap(),
     val defaultPermissions: Map<ClaimPermissionId, Boolean?> = emptyMap(),
     val trustLevels: List<TrustLevel> = emptyList(),
 ) {

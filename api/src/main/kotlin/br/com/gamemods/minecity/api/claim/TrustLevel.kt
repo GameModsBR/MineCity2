@@ -1,7 +1,7 @@
 package br.com.gamemods.minecity.api.claim
 
+import br.com.gamemods.minecity.api.id.ClaimFlagId
 import br.com.gamemods.minecity.api.id.ClaimPermissionId
-import br.com.gamemods.minecity.api.id.ClamFlagId
 import br.com.gamemods.minecity.api.id.TrustLevelId
 import br.com.gamemods.minecity.api.serializer.MiniComponent
 import br.com.gamemods.minecity.api.serializer.UniqueId
@@ -20,6 +20,6 @@ public data class TrustLevel(
     val id: TrustLevelId,
     val displayName: MiniComponent,
     val players: Set<UniqueId> = emptySet(),
-    val flags: Map<ClamFlagId, ClaimFlagValue> = emptyMap(),
+    val flags: Map<ClaimFlagId, ClaimFlagValue> = emptyMap(),
     val permissions: Map<ClaimPermissionId, Boolean?> = emptyMap()
 )

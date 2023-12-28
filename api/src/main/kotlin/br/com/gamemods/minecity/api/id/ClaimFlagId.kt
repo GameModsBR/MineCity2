@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @JvmInline
-public value class ClamFlagId(private val id: String) {
+public value class ClaimFlagId(private val id: String) {
     override fun toString(): String = id
 }

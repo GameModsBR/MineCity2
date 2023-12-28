@@ -1,10 +1,7 @@
 package br.com.gamemods.minecity.fabric.service.permission
 
-import br.com.gamemods.minecity.api.MineCity
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.id.ClaimPermissionId
-import br.com.gamemods.minecity.api.service.permission.ClaimPermission
-import br.com.gamemods.minecity.fabric.service.claim.FabricClaimService.Companion.get
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.kyori.adventure.text.Component
 import net.minecraft.block.DoorBlock
@@ -16,8 +13,15 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.HitResult
 import net.minecraft.world.World
 
+/**
+ * Represents a permission that can be granted to a player in a claim.
+ *
+ * @property id The unique identifier for the permission.
+ * @property name The name of the permission.
+ * @property description The description of the permission.
+ */
 @InternalMineCityApi
-class FabricDoorClaimPermission: ClaimPermission(
+class FabricDoorClaimPermission: FabricClaimPermission(
     id = ClaimPermissionId.DOORS,
     name = Component.text("Doors"),
     description = Component.text("Allows the player to open and close doors in the claim.")
@@ -41,11 +45,10 @@ class FabricDoorClaimPermission: ClaimPermission(
             val block = blockState.block
 
             if (block !is DoorBlock && block !is TrapdoorBlock) {
-                return ActionResult.SUCCESS
+                return ActionResult.PASS
             }
 
-            val claim = MineCity.claims[world, clickPos] ?: return ActionResult.PASS
-            return if (claim.hasPermission(player.identity().uuid(), ClaimPermissionId.DOORS)) {
+            return if (checkPermission(world, player, clickPos, ClaimPermissionId.DOORS)) {
                 ActionResult.PASS
             } else {
                 ActionResult.FAIL
