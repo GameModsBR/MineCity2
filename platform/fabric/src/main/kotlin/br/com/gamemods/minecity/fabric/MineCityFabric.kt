@@ -9,6 +9,7 @@ import br.com.gamemods.minecity.api.service.MineCityInternal
 import br.com.gamemods.minecity.core.MineCityCore
 import br.com.gamemods.minecity.core.dispatchers.Async
 import br.com.gamemods.minecity.core.dispatchers.Sync
+import br.com.gamemods.minecity.core.service.claim.CoreClaimService
 import br.com.gamemods.minecity.core.service.permission.CorePermissionService
 import br.com.gamemods.minecity.fabric.math.pos.FabricBlockLocation
 import br.com.gamemods.minecity.fabric.math.pos.FabricChunkLocation
@@ -63,6 +64,7 @@ object MineCityFabric : ModInitializer, MineCityPlatform {
 			worlds = FabricWorldService(this),
 			players = FabricNamedPlayerService(this),
 			permission = CorePermissionService(),
+			claims = CoreClaimService(),
 		)
 		MineCityInternal.implementation = core
 		core.onInitialize()

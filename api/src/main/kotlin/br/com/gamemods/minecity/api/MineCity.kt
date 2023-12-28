@@ -2,6 +2,7 @@ package br.com.gamemods.minecity.api
 
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.service.MineCityInternal
+import br.com.gamemods.minecity.api.service.claim.ClaimService
 import br.com.gamemods.minecity.api.service.namedplayer.NamedPlayerService
 import br.com.gamemods.minecity.api.service.permission.PermissionService
 
@@ -24,6 +25,11 @@ public interface MineCity {
      * Allows to get the claim permissions with easy
      */
     public val permission: PermissionService
+
+    /**
+     * Allows to get the claims with easy
+     */
+    public val claims: ClaimService
 
     /**
      * This companion object allows MineCity interface to be used directly in kotlin delegating all API calls to

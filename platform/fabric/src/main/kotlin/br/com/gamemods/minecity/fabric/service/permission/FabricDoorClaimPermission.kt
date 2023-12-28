@@ -1,11 +1,14 @@
 package br.com.gamemods.minecity.fabric.service.permission
 
+import br.com.gamemods.minecity.api.MineCity
 import br.com.gamemods.minecity.api.annotation.internal.InternalMineCityApi
 import br.com.gamemods.minecity.api.id.ClaimPermissionId
 import br.com.gamemods.minecity.api.service.permission.ClaimPermission
+import br.com.gamemods.minecity.fabric.service.claim.FabricClaimService.Companion.get
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.kyori.adventure.text.Component
 import net.minecraft.block.DoorBlock
+import net.minecraft.block.TrapdoorBlock
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
@@ -25,33 +28,28 @@ class FabricDoorClaimPermission: ClaimPermission(
 
     private inner class OnUseBlock: UseBlockCallback {
         override fun interact(player: PlayerEntity, world: World, hand: Hand, hitResult: BlockHitResult): ActionResult {
+            if (world.isClient) {
+                return ActionResult.PASS
+            }
+
             if (hand != Hand.MAIN_HAND || hitResult.type != HitResult.Type.BLOCK) {
                 return ActionResult.PASS
             }
 
-            val blockState = world.getBlockState(hitResult.blockPos)
+            val clickPos = hitResult.blockPos
+            val blockState = world.getBlockState(clickPos)
             val block = blockState.block
 
-            return if (block is DoorBlock) {
-                ActionResult.FAIL
-            } else {
+            if (block !is DoorBlock && block !is TrapdoorBlock) {
+                return ActionResult.SUCCESS
+            }
+
+            val claim = MineCity.claims[world, clickPos] ?: return ActionResult.PASS
+            return if (claim.hasPermission(player.identity().uuid(), ClaimPermissionId.DOORS)) {
                 ActionResult.PASS
+            } else {
+                ActionResult.FAIL
             }
         }
-    }
-
-
-    companion object {
-        private val doors = setOf(
-            "minecraft:acacia_door",
-            "minecraft:birch_door",
-            "minecraft:crimson_door",
-            "minecraft:dark_oak_door",
-            "minecraft:iron_door",
-            "minecraft:jungle_door",
-            "minecraft:oak_door",
-            "minecraft:spruce_door",
-            "minecraft:warped_door"
-        )
     }
 }
