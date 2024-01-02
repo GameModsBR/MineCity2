@@ -41,7 +41,7 @@ class FabricDoorClaimPermission: ClaimPermission(
             val block = blockState.block
 
             if (block !is DoorBlock && block !is TrapdoorBlock) {
-                return ActionResult.SUCCESS
+                return ActionResult.PASS
             }
 
             val claim = MineCity.claims[world, clickPos] ?: return ActionResult.PASS
