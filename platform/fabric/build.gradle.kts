@@ -1,3 +1,5 @@
+import net.fabricmc.loom.task.RemapJarTask
+
 plugins {
     id("fabric-loom") version "1.4-SNAPSHOT"
     id("maven-publish")
@@ -42,7 +44,12 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
-    modImplementation(include("net.kyori:adventure-platform-fabric:5.9.0")!!)
+
+    // Broken in server, but necessary for IDE to work (our jar, for some reason, isn't accepted by modImplementation)
+    modImplementation("net.kyori:adventure-platform-fabric:5.9.0")
+    // Custom version that backports the fix (runtime only, since in IDE we use the default version)
+    modRuntimeOnly(files("libs/adventure-platform-fabric-5.9.1-PC.jar"))
+
     // Uncomment the following line to enable the deprecated Fabric API modules.
     // These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
@@ -72,6 +79,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+tasks.withType<RemapJarTask> {
+    // Include the adventure-platform-fabric jar in the remapped jar (include task only works with maven dependency)
+    nestedJars.from(files("libs/adventure-platform-fabric-5.9.1-PC.jar"))
 }
 
 java {
