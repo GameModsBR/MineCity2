@@ -26,6 +26,7 @@ fun BlockHitResult.blockStateBy(world: World) : BlockState {
  * **Trivial**: This is a mere convenience extension function.
  * @param world The world being queried.
  * @author alikindsys
- */fun BlockHitResult.blockEntityBy(world: World) : BlockEntity? {
+ */
+ fun BlockHitResult.blockEntityBy(world: World) : BlockEntity? {
     return world.getBlockEntity(this.blockPos)
 }
