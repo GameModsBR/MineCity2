@@ -48,7 +48,7 @@ dependencies {
     // Broken in server, but necessary for IDE to work (our jar, for some reason, isn't accepted by modImplementation)
     modImplementation("net.kyori:adventure-platform-fabric:5.9.0")
     // Custom version that backports the fix (runtime only, since in IDE we use the default version)
-    modRuntimeOnly(files("libs/adventure-platform-fabric-5.9.1-PC.jar"))
+    modLocalRuntime(files("libs/adventure-platform-fabric-5.9.1-PC.jar"))
 
     // Uncomment the following line to enable the deprecated Fabric API modules.
     // These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
