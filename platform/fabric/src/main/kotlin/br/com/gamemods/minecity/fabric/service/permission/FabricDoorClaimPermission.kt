@@ -8,6 +8,7 @@ import br.com.gamemods.minecity.fabric.service.claim.FabricClaimService.Companio
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.kyori.adventure.text.Component
 import net.minecraft.block.DoorBlock
+import net.minecraft.block.FenceGateBlock
 import net.minecraft.block.TrapdoorBlock
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.ActionResult
@@ -40,7 +41,7 @@ class FabricDoorClaimPermission: ClaimPermission(
             val blockState = world.getBlockState(clickPos)
             val block = blockState.block
 
-            if (block !is DoorBlock && block !is TrapdoorBlock) {
+            if (block !is DoorBlock && block !is TrapdoorBlock && block !is FenceGateBlock) {
                 return ActionResult.PASS
             }
 

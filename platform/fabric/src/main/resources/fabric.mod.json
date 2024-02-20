@@ -3,9 +3,10 @@
 	"id": "minecity",
 	"version": "${version}",
 	"name": "MineCity",
-	"description": "",
+	"description": "The new version of the powerful city manager MineCity, inspired by MyTowns 2.",
 	"authors": [
-		"Polyana Fontes <polyana@polyclub.games>"
+		"Polyana Fontes <polyana@polyclub.games>",
+		"Hugo Heger <lobometalurgico@gamemods.com.br>"
 	],
 	"contact": {
 		"homepage": "https://polyclub.games/",
@@ -41,8 +42,5 @@
 		"java": ">=17",
 		"fabric-api": "*",
 		"fabric-language-kotlin": ">=1.9.21"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }

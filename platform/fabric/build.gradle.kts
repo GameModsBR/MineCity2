@@ -31,6 +31,16 @@ loom {
             sourceSet(sourceSets.getByName("client"))
         }
     }
+
+    runs {
+        named("client") {
+            runDir = "run/client"
+        }
+
+        named("server") {
+            runDir = "run/server"
+        }
+    }
 }
 
 val persistenceProject = project(":persistence")
